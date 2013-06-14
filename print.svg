@@ -19,8 +19,10 @@
   <rect x="10" y="16" width="180" height="72" rx="0" ry="0"
      style="fill:url(#qualityGradient); stroke-width: 0;" />
   
+  <!-- largest size that can be print with "great" quality (>= 120ppc) -->
   <line x1="153" y1="8" x2="153" y2="88" style="stroke: #000000; stroke-width: 2;" />
   <text x="155" y="14" style="stroke: #000000">10x15</text>
+  <!-- largest size that can be print with "good" quality (>= 96ppc) -->
   <line x1="105" y1="8" x2="105" y2="88" style="stroke: #000000; stroke-width: 2;" />
   <text x="107" y="14" style="stroke: #000000">15x21</text>
 

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <defs>
+    <linearGradient id="qualityGradient"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="0%"
+                    spreadMethod="pad">
+      <stop offset="<%= 100 * PrintQuality::PADDING / PrintQuality::RULER_WIDTH %>%"
+         stop-color="#cc0000" stop-opacity="1" /><!-- worse offset: 46ppc/120ppi -->
+      <stop offset="<%= 100 * (PrintQuality::PADDING + PrintQuality::RESOLUTIONS[1] - PrintQuality::RESOLUTIONS.first) / PrintQuality::RULER_WIDTH %>%"
+         stop-color="#f8f800" stop-opacity="1" /><!-- bad offset: 64ppc/170ppi -->
+      <stop offset="<%= 100 * (PrintQuality::PADDING + PrintQuality::RESOLUTIONS[2] - PrintQuality::RESOLUTIONS.first) / PrintQuality::RULER_WIDTH %>%"
+         stop-color="#f8f800" stop-opacity="1" /><!-- good offset: 96ppc/240ppi -->
+      <stop offset="<%= 100 * (PrintQuality::PADDING + PrintQuality::RESOLUTIONS[3] - PrintQuality::RESOLUTIONS.first) / PrintQuality::RULER_WIDTH %>%"
+         stop-color="#88f800" stop-opacity="1" /><!-- better offset: 120ppc/300ppi -->
+      <stop offset="<%= 100 * (PrintQuality::PADDING + PrintQuality::RESOLUTIONS[4] - PrintQuality::RESOLUTIONS.first) / PrintQuality::RULER_WIDTH %>%"
+         stop-color="#00cc00" stop-opacity="1" /><!-- best offset: 160ppc/400ppi -->
+    </linearGradient>
+  </defs>
+
+  <rect rx="0" ry="0"
+     x="<%= PrintQuality::RULER_X %>"
+     y="<%= PrintQuality::RULER_Y %>"
+     width="<%= PrintQuality::RULER_WIDTH %>"
+     height="<%= PrintQuality::RULER_HEIGHT %>"
+     style="fill:url(#qualityGradient); stroke-width: 0;" />
+  
+  <line x1="<%= @largest_good_x %>" y1="<%= PrintQuality::RULER_Y - 8 %>" x2="<%= @largest_good_x %>"
+     y2="<%= PrintQuality::RULER_Y + PrintQuality::RULER_HEIGHT %>"
+     style="stroke: #000000; stroke-width: 2;" />
+  <text x="<%= @largest_good_x + 2 %>" y="<%= PrintQuality::RULER_Y - 4 %>"
+     style="stroke: #000000"><%= @largest_good_size %></text>
+
+  <line x1="<%= @largest_great_x %>" y1="<%= PrintQuality::RULER_Y %>" x2="<%= @largest_great_x %>"
+     y2="<%= PrintQuality::RULER_Y + PrintQuality::RULER_HEIGHT + 8 %>"
+     style="stroke: #000000; stroke-width: 2;" />
+  <text x="<%= @largest_great_x + 2 %>" y="<%= PrintQuality::RULER_Y + PrintQuality::RULER_HEIGHT + 16 %>"
+     style="stroke: #000000"><%= @largest_great_size %></text>
+
+</svg>
