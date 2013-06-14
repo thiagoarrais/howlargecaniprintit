@@ -27,4 +27,4 @@ PLATFORMS
 DEPENDENCIES
   rspec (~> 2.13)
   sinatra (~> 1.4)
-  value_struct
+  value_struct (~> 0.7)
