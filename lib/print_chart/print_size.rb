@@ -1,3 +1,5 @@
+require 'print_chart/resolution'
+
 module PrintChart
   class PrintSize
     def initialize(w, h)
@@ -6,7 +8,7 @@ module PrintChart
 
     def resolution_for(w, h)
       small, big = [w, h].sort
-      [small / @small, big / @big].min
+      Resolution.new([small / @small, big / @big].min, self)
     end
 
     def to_s
