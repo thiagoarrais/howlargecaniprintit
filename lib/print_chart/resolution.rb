@@ -1,14 +1,13 @@
 require 'value_struct'
 
 module PrintChart
-  class Resolution < ValueStruct.new(:value, :size)
-    #TODO should not be hard-coded
+  class Resolution < ValueStruct.new(:value, :size, :refs)
     def good?
-      value >= 96
+      refs.good?(self)
     end
 
     def great?
-      value >= 120
+      refs.great?(self)
     end
   end
 end
