@@ -14,7 +14,7 @@ module PrintChart
       100 * (padding + offset) / ruler_width
     end
     def x_for(resolution)
-      resolution.value.round - resolutions.worst + padding
+      [resolution.value.round, resolutions.best].min - resolutions.worst + padding
     end
   end
 end

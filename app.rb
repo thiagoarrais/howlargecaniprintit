@@ -11,7 +11,6 @@ get '/:width;:height' do
   content_type :svg
   w, h = params[:width].to_i, params[:height].to_i
   #TODO respond with 404 if w and h aren't numbers
-  #TODO avoid getting the markers outside of the chart
   refs = PrintChart::ResolutionReference.new(PrintChart::RESOLUTIONS)
   resolutions = PrintChart::SIZES.map{|a| PrintChart::PrintSize.new(*a, refs)}.
     map {|size| size.resolution_for(w, h) }
