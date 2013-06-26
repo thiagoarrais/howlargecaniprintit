@@ -1,11 +1,17 @@
 module PrintChart
   class ResolutionChart < ValueStruct.new(:resolutions)
     def largest_good
-      resolutions.select(&:good?).last
+      elect(:good?)
     end
 
     def largest_great
-      resolutions.select(&:great?).last
+      elect(:great?)
+    end
+
+    private
+
+    def elect(pred)
+      resolutions.select(&pred).last || resolutions.first
     end
   end
 end
