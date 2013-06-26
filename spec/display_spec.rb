@@ -26,12 +26,13 @@ module PrintChart
 
     it "should position the markers" do
       d = Display.new(ResolutionReference.new([40, 60, 100, 120, 160]))
-      d.x_for(OpenStruct.new value: 80).should == 80 - 40 + 10
+      d.x_for(OpenStruct.new value: 80).should == 80 - 40 + 10 + d.ruler_x
     end
 
     it "should not let the markers get outside of the chart" do
       d = Display.new(ResolutionReference.new([50, 100, 120, 150, 200]))
-      d.x_for(OpenStruct.new value: 300).should == d.ruler_width - 10
+      d.x_for(OpenStruct.new value: 300).should == d.ruler_width - 10 + d.ruler_x
+      d.x_for(OpenStruct.new value: 40).should == d.padding + d.ruler_x
     end
   end
 end
