@@ -1,15 +1,16 @@
+require 'print_chart'
 require 'print_chart/resolution'
+require 'print_chart/resolution_reference'
 
 module PrintChart
   class PrintSize
-    def initialize(w, h, refs)
+    def initialize(w, h)
       @small, @big = [w, h].sort
-      @refs = refs
     end
 
-    def resolution_for(w, h)
+    def resolution_for(w, h, refs=PrintChart::ResolutionReference.new(PrintChart::RESOLUTIONS))
       small, big = [w, h].sort
-      Resolution.new([small / @small, big / @big].min, self, @refs)
+      Resolution.new([small / @small, big / @big].min, self, refs)
     end
 
     def to_s
