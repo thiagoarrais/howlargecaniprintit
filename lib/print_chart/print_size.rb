@@ -8,7 +8,7 @@ module PrintChart
       @small, @big = [w, h].sort
     end
 
-    def resolution_for(w, h, refs=PrintChart::ResolutionReference.new(PrintChart::RESOLUTIONS))
+    def resolution_for(w, h, refs=PrintChart::ResolutionReference.new(PrintChart::UNITS['cm']))
       small, big = [w, h].sort
       Resolution.new([small / @small, big / @big].min, self, refs)
     end
