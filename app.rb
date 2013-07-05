@@ -11,9 +11,10 @@ require 'print_chart/size_reference'
   get route do
     content_type :svg
     w, h = params[:width].to_i, params[:height].to_i
-    #TODO respond with 404 if w and h aren't numbers
+    not_found if [w, h].include?(0)
     unit = PrintChart::UNITS[params[:unit] || 'cm']
-    #TODO respond with 404 if unit not found
+    not_found if unit.nil?
+
     refs = PrintChart::ResolutionReference.new(unit.resolutions)
     chart = PrintChart::SizeReference.new(unit.sizes).chart_for(w, h, refs)
     @largest_good = chart.largest_good
@@ -21,4 +22,9 @@ require 'print_chart/size_reference'
     @render = PrintChart::Display.new(refs)
     erb :'ruler.svg'
   end
+end
+
+not_found do
+  content_type :txt
+  halt(404, '404 - Not found')
 end
